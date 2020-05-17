@@ -1,0 +1,12 @@
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\bin\Debug\netcoreapp3.1\AddressBook.BLL.deps.json
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\bin\Debug\netcoreapp3.1\AddressBook.BLL.dll
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\bin\Debug\netcoreapp3.1\AddressBook.BLL.pdb
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.csproj.CoreCompileInputs.cache
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.AssemblyInfoInputs.cache
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.AssemblyInfo.cs
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.dll
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.pdb
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.csprojAssemblyReference.cache
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\bin\Debug\netcoreapp3.1\AddressBook.DAL.dll
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\bin\Debug\netcoreapp3.1\AddressBook.DAL.pdb
+C:\Users\usajj\source\repos\AddressBook\AddressBook.BLL\obj\Debug\netcoreapp3.1\AddressBook.BLL.csproj.CopyComplete

@@ -1,0 +1,4 @@
+﻿next job is to do so function that allow to insert or retrive patterns from our database -> Entities live Contact ++
+funstion:
+- Get all contact 
+- add new contact 

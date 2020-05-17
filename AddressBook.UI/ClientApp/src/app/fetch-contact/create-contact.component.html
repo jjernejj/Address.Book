@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<form #createContactForm="ngForm" (ngSubmit)="addContact(_contact)">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{nameOfVerbAction}} Contact</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" name="firstName" [(ngModel)]="_contact.firstName" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" name="lastName" [(ngModel)]="_contact.lastName" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" type="text" name="address" [(ngModel)]="_contact.address" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="telephoneNumber">Phone number</label>
+        <input id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" type="text" class="form-control" />
+
+        <!--<input id="telephoneNumber" required pattern="^\d{3}-\d{3}-\d{3}$" name="telephonenumber" [(ngModel)]="telephoneNumber" type="text" class="form-control" />
+            <span class="help-block" *ngIf="telephoneNumber.errors?.required && telephoneNumber.touched">
+              Phone number is requred  - še združut Contact class z fields from html !!!!
+            </span>
+            <span class="help-block" *ngIf="telephoneNumber.errors?.pattern && telephoneNumber.touched">
+              Phone number is invalid
+            </span>-->
+      </div>
+
+    </div>
+
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</form>
+<div>{{createContactForm.valuu | json}}x1</div>
+<div>{{_contact | json}}x2</div>

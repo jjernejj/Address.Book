@@ -1,0 +1,53 @@
+<h1 id="tableLabel">Address Book</h1>
+
+<p>Show Contacts:</p>
+
+<p *ngIf="!fechaData"><em>Still loading...</em></p>
+
+
+<p>
+  <!--<a class="list-group-item list-group-item-action" [routerLink]="['/create-new-contact/0']">Create New</a>-->
+  <button type="submit" (click)="cleadModelForAddNewContact(0)" class="btn btn-primary">Add</button>
+</p>
+
+
+<table class='table table-striped table-bordered' aria-labelledby="tableLabel" *ngIf="contacts">
+  <thead class="thead-dark">
+    <tr>
+      <th>Id</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Address</th>
+      <th>Phone Numbers</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td>{{ contact.id }}</td>
+      <td>{{ contact.lastName }}</td>
+      <td>{{ contact.firstName }}</td>
+      <td>{{ contact.address }}</td>
+      <td>{{ contact.telephoneNumber }}
+      <td colspan="2">
+
+        <button style="align-content:start" type="submit" (click)="loadContactToEdit(contact.id)" class="btn btn-warning">Update</button>
+        <!--<a [routerLink]="['/create-new-contact/', contact.id]">Edit</a> |-->
+        <!--<a [routerLink]="" (click)="delete(contact.id)">Delete</a>-->
+        <button type="submit" style="align-content:end" (click)="deleteThisContact(contact.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div style="align-content:end" class="col-sm-6">
+    <button type="submit" (click)="paginationBack()" class="btn btn-danger  pull-right">Back</button>
+  </div>
+
+  <div style="align-content:flex-start" class="col-sm-6">
+    <button type="submit" (click)="paginationNext()" class="btn btn-danger pull-left ">Next</button>
+  </div>
+</div>
+
+

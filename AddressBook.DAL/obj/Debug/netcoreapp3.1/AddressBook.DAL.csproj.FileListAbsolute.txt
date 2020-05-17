@@ -1,0 +1,11 @@
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\bin\Debug\netcoreapp3.1\AddressBook.DAL.deps.json
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\bin\Debug\netcoreapp3.1\AddressBook.DAL.dll
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\bin\Debug\netcoreapp3.1\AddressBook.DAL.pdb
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.AssemblyInfoInputs.cache
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.AssemblyInfo.cs
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.dll
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.pdb
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\bin\Debug\netcoreapp3.1\AddressBook.DAL.runtimeconfig.json
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\bin\Debug\netcoreapp3.1\AddressBook.DAL.runtimeconfig.dev.json
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.csproj.CoreCompileInputs.cache
+C:\Users\usajj\source\repos\AddressBook\AddressBook.DAL\obj\Debug\netcoreapp3.1\AddressBook.DAL.genruntimeconfig.cache

@@ -1,0 +1,5 @@
+﻿add and use EntitiyFrameworkCore.SQLServer package -> ORM for SQL server (my database provider)
+add package EntityFrameworkCore.Tool -> for update shema of database and migrate....
+
+steps how to us entityframework.tool
+create entitie/model, then tell DbContext for entitie/model that is table od database
