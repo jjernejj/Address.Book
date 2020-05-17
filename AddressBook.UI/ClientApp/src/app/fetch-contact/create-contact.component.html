@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
 
 <form #createContactForm="ngForm" (ngSubmit)="addContact(_contact)">
   <div class="panel panel-primary">
@@ -8,38 +8,50 @@
 
     <div class="panel-body">
       <div class="form-group">
-        <label>First Name</label>
-        <input arequired id="firstName" name="firstName" [(ngModel)]="_contact.firstName" type="text" class="form-control" />
+        <label for="firstName" class="control-label">First Name</label>
+        <input required minlength="3" placeholder="Insert first name...." id="firstName" [class.has-error]="firstNameControl.untouched" name="firstName" [(ngModel)]="_contact.firstName" #firstNameControl="ngModel" type="text" class="form-control" />
+        <span class="help-block" *ngIf="firstNameControl.valid==false && firstNameControl.dirty">Invalid first name</span>
+
+
+        <div>touched: {{firstNameControl.touched}}</div>
+        <div>untouched: {{firstNameControl.untouched}}</div>
+        <div>pristine: {{firstNameControl.pristine}}</div>
+        <div>dirty: {{firstNameControl.dirty}}</div>
+        <div>valid: {{firstNameControl.valid}}</div>
+        <div>invalid: {{firstNameControl.invalid}}</div>
       </div>
 
       <div class="form-group">
         <label>Last Name</label>
-        <inputarequired id="lastName" name="lastName" [(ngModel)]="_contact.lastName" type="text" class="form-control" />
+        <input required minlength="3" placeholder="Insert last name...." id="lastName" name="lastName" [(ngModel)]="_contact.lastName" #lastNameControl="ngModel" type="text" class="form-control" />
+        <span class="help-block" *ngIf="lastNameControl.valid==false && lastNameControl.dirty">Invalid last name</span>
       </div>
 
       <div class="form-group">
         <label>Address</label>
-        <input arequired id="address" type="text" name="address" [(ngModel)]="_contact.address" class="form-control" />
+        <input required minlength="3" placeholder="Insert address...." id="address" type="text" name="address" [(ngModel)]="_contact.address" #addressControl="ngModel" class="form-control" />
+        <span class="help-block" *ngIf="addressControl.valid==false && addressControl.dirty">Invalid address</span>
       </div>
 
       <div class="form-group">
         <label>Phone number</label>
-        <input arequired pattern="^\d{3}-\d{3}-\d{3}$" id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" type="text" class="form-control" />
-        <!--<input id="telephoneNumber" required pattern="^\d{3}-\d{3}-\d{3}$" name="telephonenumber" [(ngModel)]="telephoneNumber" type="text" class="form-control" />
-        <span class="help-block" *ngIf="telephoneNumber.errors?.required && telephoneNumber.touched">
-          Phone number is requred  - še združut Contact class z fields from html !!!!
-        </span>
-        <span class="help-block" *ngIf="telephoneNumber.errors?.pattern && telephoneNumber.touched">
-          Phone number is invalid
-        </span>-->
+        <input required pattern="^\d{3}-\d{3}-\d{3}$" placeholder="Insert last telephone number...." id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" #telephoneNumberControl="ngModel" type="text" class="form-control" />
+        <span class="help-block" *ngIf="telephoneNumberControl.valid==false && telephoneNumberControl.dirty">Invalid format of telephone number</span>
+        <div>touched: {{telephoneNumberControl.touched}}</div>
+        <div>untouched: {{telephoneNumberControl.untouched}}</div>
+        <div>pristine: {{telephoneNumberControl.pristine}}</div>
+        <div>dirty: {{telephoneNumberControl.dirty}}</div>
+        <div>valid: {{telephoneNumberControl.valid}}</div>
+        <div>invalid: {{telephoneNumberControl.invalid}}</div>
       </div>
 
     </div>
 
     <div class="panel-footer">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" [disabled]="createContactForm.invalid">Save</button>
     </div>
   </div>
 </form>
-<div>{{createContactForm.valuu | json}}x1</div>
-<div>{{_contact | json}}x2</div>
+<div>{{createContactForm.value | json}}x1</div>
+<div>{{createContactForm.invalid}}x2</div>
+<div>{{_contact | json}}x3</div>

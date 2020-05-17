@@ -12,10 +12,12 @@ namespace AddressBook.DAL.Entities
         [Key] //primary key (long)
         public Int64 Id { get; set; }
 
+        [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid First Name")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public String FirstName { get; set; }
 
+        [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid Last Name")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public String LastName { get; set; }

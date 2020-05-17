@@ -11,6 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.BLL", "AddressB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{D0ED3BF7-05B7-49C6-876B-2A87F5D6942A}"
 	ProjectSection(SolutionItems) = preProject
+		documentation.md = documentation.md
 		documentation.txt = documentation.txt
 	EndProjectSection
 EndProject
