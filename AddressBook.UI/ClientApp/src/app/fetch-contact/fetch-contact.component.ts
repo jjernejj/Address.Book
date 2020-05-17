@@ -17,6 +17,11 @@ export class FetchContactComponent {
   public contacts: Contact[];
   public pagination: number;
 
+  searchByFirstName: string = "";
+  searchByLastName: string = "";
+  searchByAddress: string = "";
+  searchByTelephoneNumber: string = "";
+
   _http: HttpClient;
   _baseUrl: string = "";
 
@@ -24,16 +29,21 @@ export class FetchContactComponent {
     this._http = http;
     this._baseUrl = baseUrl;
 
-    http.get<Contact[]>(baseUrl + 'contact').subscribe(result => {
-      this.contacts = result;
-      this.contactservice._globalContactList = result;
-    }, error => console.error(error));
+    if (this.searchByFirstName.length > 0 || this.searchByLastName.length > 0 || this.searchByAddress.length > 0 || this.searchByTelephoneNumber.length > 0) {
+      console.log("Will be executed serach by fields");
+    }
+    else {
+      http.get<Contact[]>(baseUrl + 'contact').subscribe(result => {
+        this.contacts = result;
+        this.contactservice._globalContactList = result;
+      }, error => console.error(error));
+    }
 
-    // this.contactservice.getAllContacts().subscribe(result => {
-    //  this.contacts = result;
-    //}, error => console.error(error));
 
   }
+
+
+
 
   loadContactToEdit(contactId: string) {
     this.contactservice._globalNameOfVerb = "Update";
@@ -76,7 +86,6 @@ export class FetchContactComponent {
       this.contacts = result;
       this.contactservice._globalContactList = result;
     }, error => console.error(error));
-
   }
 
   paginationNext() {
@@ -86,6 +95,27 @@ export class FetchContactComponent {
       this.contacts = result;
       this.contactservice._globalContactList = result;
     }, error => console.error(error));
+  }
+
+
+  searchContact() {
+    if (this.searchByFirstName.length > 0 || this.searchByLastName.length > 0 || this.searchByAddress.length > 0 || this.searchByTelephoneNumber.length > 0) {
+      console.log(this.searchByFirstName);
+      this._http.get<Contact[]>(this._baseUrl + 'api/ContactsEF?firstName=' + this.searchByFirstName + '&lastName=' + this.searchByLastName + '&address=' + this.searchByAddress + '&telephoneNumber=' + this.searchByTelephoneNumber).subscribe(result => {
+        this.contacts = result;
+        this.contactservice._globalContactList = result;
+      }, error => console.error(error));
+    }
+    else {
+      this._http.get<Contact[]>(this._baseUrl + 'contact').subscribe(result => {
+        this.contacts = result;
+        this.contactservice._globalContactList = result;
+      }, error => console.error(error));
+    }
 
   }
+
+
+
+
 }

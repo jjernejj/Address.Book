@@ -5,6 +5,32 @@
 <p *ngIf="!fechaData"><em>Still loading...</em></p>
 
 
+<div class="form-group">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" class="form-control" placeholder="Search by first name" style="width:200px" [(ngModel)]="searchByFirstName" />
+        </td>
+        <td>
+          <input type="text" class="form-control" placeholder="Search by last name" style="width:200px" [(ngModel)]="searchByLastName" />
+        </td>
+        <td>
+          <input type="text" class="form-control" placeholder="Search by address" style="width:200px" [(ngModel)]="searchByAddress" />
+        </td>
+        <td>
+          <input type="text" class="form-control" placeholder="Search by telephone number" style="width:200px" [(ngModel)]="searchByTelephoneNumber" />
+        </td>
+        <td>
+          <button type="submit" (click)="searchContact()" class="btn btn-primary">Search</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
 <p>
   <!--<a class="list-group-item list-group-item-action" [routerLink]="['/create-new-contact/0']">Create New</a>-->
   <button type="submit" (click)="cleadModelForAddNewContact(0)" class="btn btn-primary">Add</button>

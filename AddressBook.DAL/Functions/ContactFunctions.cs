@@ -62,6 +62,33 @@ namespace AddressBook.DAL.Functions
         }
 
 
+        /// <summary>
+        /// Seacrh Contact by inserted value
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastname"></param>
+        /// <param name="address"></param>
+        /// <param name="telephoneNumber"></param>
+        /// <returns></returns>
+        public async Task<List<Contact>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "")
+        {
+            List<Contact> contact = new List<Contact>();
+            // initialite DatabaseContext object
+            using (var context = new DatabaseContext(DatabaseContext.ops.dbOptions))
+            {
+                if (!string.IsNullOrWhiteSpace(firstName))
+                    contact = await context.Contacts.Where(a => a.FirstName.Contains(firstName)).ToListAsync();
+                if (!string.IsNullOrWhiteSpace(lastname))
+                    contact = await context.Contacts.Where(a => a.LastName.Contains(lastname)).ToListAsync();
+                if (!string.IsNullOrWhiteSpace(address))
+                    contact = await context.Contacts.Where(a => a.Address.Contains(address)).ToListAsync();
+                if (!string.IsNullOrWhiteSpace(telephoneNumber))
+                    contact = await context.Contacts.Where(a => a.TelephoneNumber.Contains(telephoneNumber)).ToListAsync();
+
+            }
+            return contact;
+        }
+
 
         /// <summary>
         /// Get all Contacts

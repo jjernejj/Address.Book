@@ -42,6 +42,11 @@ namespace AddressBook.BLL.ContactLogic
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Boolean> DeleteThisContact(int id)
         {
             try
@@ -51,23 +56,40 @@ namespace AddressBook.BLL.ContactLogic
                     return true;
                 else
                     return false;
-
-
             }
             catch (Exception ex)
             {
-
                 return false;
             }
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Contact> GetContact(Int64 id)
         {
             Contact contact = await _contact.GetContact(id);
             return contact;
         }
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastname"></param>
+        /// <param name="address"></param>
+        /// <param name="telephoneNumber"></param>
+        /// <returns></returns>
+        public async Task<List<Contact>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "")
+        {
+            List<Contact> contact = await _contact.SearchContact(firstName, lastname, address, telephoneNumber);
+            return contact;
+        }
 
 
 
@@ -83,6 +105,13 @@ namespace AddressBook.BLL.ContactLogic
         }
 
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         public async Task<int> UpdateContact(long id, Contact contact)
         {
             int data = await _contact.PutContact(id, contact);
@@ -90,7 +119,11 @@ namespace AddressBook.BLL.ContactLogic
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> VerifyContact(long id)
         {
             var data = await _contact.CheckContactExists(id);

@@ -15,6 +15,8 @@ namespace AddressBook.DAL.Interfaces
 
         Task<Contact> GetContact(Int64 id);
 
+        Task<List<Contact>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "");
+
         Task<List<Contact>> GetAllContacts(int pageNumber = 1);
 
         Task<int> DeleteContact(int id);

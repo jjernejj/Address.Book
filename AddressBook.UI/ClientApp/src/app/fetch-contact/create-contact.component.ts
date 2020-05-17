@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, throwError } from 'rxjs';
 //import { map } from 'rxjs-compat/operator/map';
 import { map } from 'rxjs/operators';
@@ -20,6 +20,8 @@ export class CreateContactComponent implements OnInit {
   myAppUrl: string = "";
   nameOfVerbAction: string;
 
+
+  // the contatc object for edit or create
   _contacts: Contact = {
     id: 0,
     firstName: "",
@@ -28,6 +30,8 @@ export class CreateContactComponent implements OnInit {
     telephoneNumber: "",
   };
 
+  // the form Model
+  form: FormGroup;
 
 
   // will use mgModel
@@ -43,6 +47,7 @@ export class CreateContactComponent implements OnInit {
 
   constructor(private contactservice: ContactService, private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router) {
     this.myAppUrl = baseUrl;
+
   }
 
 
@@ -61,8 +66,19 @@ export class CreateContactComponent implements OnInit {
     else {
       this._contact = this._contacts;
     }
-
     this.nameOfVerbAction = this.contactservice._globalNameOfVerb;
+
+
+    this.form = new FormGroup(
+      {
+        name: new FormControl('', Validators.required),
+        surname: new FormControl('', Validators.required),
+        address: new FormControl('', Validators.required),
+        phone: new FormControl('', Validators.required)
+      },
+    );
+
+
   }
 
 

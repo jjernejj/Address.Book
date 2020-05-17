@@ -60,6 +60,24 @@ namespace AddressBook.UI.API
         }
 
 
+        /// <summary>
+        /// API seacrh contact
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastname"></param>
+        /// <param name="address"></param>
+        /// <param name="telephoneNumber"></param>
+        /// <returns></returns>
+        public async Task<ActionResult<List<Contact>>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "")
+        {
+            var contact = await _context.SearchContact(firstName, lastname, address, telephoneNumber);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+            return contact;
+        }
 
 
         /// <summary>
