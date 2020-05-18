@@ -87,9 +87,6 @@ export class FetchContactComponent {
   }
 
 
-  //deleteThisContact(contactId: string, template: TemplateRef<any>) {
-  // this.openModal(template);
-
   deleteThisContact(contactId: string) {
     this.contactservice._globalContactIdForExecuteVerb = contactId;
     this.contactservice.deleteContact(Number(contactId)).subscribe(

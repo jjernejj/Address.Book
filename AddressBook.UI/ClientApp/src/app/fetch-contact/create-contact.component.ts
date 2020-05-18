@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, throwError } from 'rxjs';
-//import { map } from 'rxjs-compat/operator/map';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { Contact } from '../models/contact.model'
@@ -117,86 +116,14 @@ export class CreateContactComponent implements OnInit {
       }
       else
         this._router.navigate(['/fetch-data-contact']);
-     
+
     }, error => console.error(error));
 
     //if (this.telephoneInUse > 0) {
     //  console.log("telephone number is ready in use !!");
     //}
-    //else {
-
-
-    //}
+    //else { }
   }
-
-
-  //addNewContact(contactData: Contact): Observable<Contact> {   
-  //    return this._http.post<Contact>(this.myAppUrl + 'api/ContactsEF', contactData, {
-  //      headers: new HttpHeaders({
-  //        'Content-Type': 'application/json'
-  //      })
-  //    }).pipe(catchError(this.handleError));
-  //}
-
-
-  //saveContact(contactForm: NgForm): Observable < Contact > {
-  //  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //  return this._http.post<Contact>(this.myAppUrl + '/api/ContactsEF/CreateNewContact/',
-  //    contactForm.value, httpOptions);
-  //}
-
-
-  //RunSaveContact(contact: Contact) {
-  //  if (this.employeeIdUpdate == null) {
-  //    this.employeeService.createEmployee(employee).subscribe(
-  //      () => {
-  //        this.dataSaved = true;
-  //        this.massage = 'Record saved Successfully';
-  //        this.loadAllEmployees();
-  //        this.employeeIdUpdate = null;
-  //        this.employeeForm.reset();
-  //      }
-  //    );
-  //  } else {
-  //    employee.EmpId = this.employeeIdUpdate;
-  //    this.employeeService.updateEmployee(employee).subscribe(() => {
-  //      this.dataSaved = true;
-  //      this.massage = 'Record Updated Successfully';
-  //      this.loadAllEmployees();
-  //      this.employeeIdUpdate = null;
-  //      this.employeeForm.reset();
-  //    });
-  //  }
-  //}
-
-
-
-
-
-  ///** PUT: update the hero on the server. Returns the updated hero upon success. */
-  //saveContact(contactForm: NgForm): Observable<Contact> {
-  //  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //  return this._http.put<Contact>(this.myAppUrl + '/api/ContactsEF', contactForm, httpOptions)
-  //  //.pipe(
-  //  //  catchError(this.errorHandler())
-  //  //);
-  //}
-
-
-  //myAppUrl: string = "";
-  //public contacts: Contact[];
-
-  //constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-  //  http.get<Contact[]>(baseUrl + 'contact').subscribe(result => {
-  //    this.contacts = result;
-  //  }, error => console.error(error));
-  //}
-
-  //saveEmployee(employee) {
-  //  return this._http.post(this.myAppUrl + 'api/Employee/Create', employee)
-  //    .map((response: Response) => response.json())
-  //    .catch(this.errorHandler)
-  //}
 
 
 
@@ -206,12 +133,10 @@ export class CreateContactComponent implements OnInit {
 
   //}
 
-
-
-  //saveEmployee(contactForm: NgForm) {
-  //  return this._http.post(this.myAppUrl + 'api/ContactsEF/Create', contactForm.value)
+  //saveEmployee(employee) {
+  //  return this._http.post(this.myAppUrl + 'api/Employee/Create', employee)
   //    .map((response: Response) => response.json())
-
+  //    .catch(this.errorHandler)
   //}
 
 
@@ -221,14 +146,6 @@ export class CreateContactComponent implements OnInit {
 
   //}
 
-
-
-
-  //saveContact(contactForm: NgForm): Observable<Contact> {
-  //  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //  return this._http.post<Contact>(this.myAppUrl + '/api/ContactsEF/',
-  //    contactForm.value, httpOptions);
-  //}
 
   //saveContact(newContact: Contact): void {
   //  console.log(newContact);
