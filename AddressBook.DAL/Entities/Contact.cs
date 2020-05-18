@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace AddressBook.DAL.Entities
 {
@@ -28,6 +28,7 @@ namespace AddressBook.DAL.Entities
 
         [RegularExpression(@"^\d{3}-\d{3}-\d{3}$")]
         [Required]
+        [Remote(action: "IsTelephoneNumberUse", controller: "Contact")]
         public string TelephoneNumber { get; set; }
     }
 }

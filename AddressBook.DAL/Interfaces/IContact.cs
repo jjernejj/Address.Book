@@ -11,6 +11,8 @@ namespace AddressBook.DAL.Interfaces
     {
         // EXPOSE THE FUNCTIONS REQUIRED
 
+        Contact IsTelephoneNumberUse(string telephoneNumber);
+
         Task<Contact> AddContact(string firstname, string lastname, string address, string telephonenumber);
 
         Task<Contact> GetContact(Int64 id);

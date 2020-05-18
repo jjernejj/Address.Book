@@ -16,6 +16,19 @@ namespace AddressBook.BLL.ContactLogic
         /// </summary>
         private IContact _contact = new AddressBook.DAL.Functions.ContactFunctions();
 
+
+        /// <summary>
+        /// check if exist yet this telephone number
+        /// </summary>
+        /// <param name="telephoneNumber"></param>
+        /// <returns></returns>
+        public Contact IsTelephoneNumberUse(string telephoneNumber)
+        {
+            Contact contact =  _contact.IsTelephoneNumberUse(telephoneNumber);
+            return contact;
+        }
+
+
         /// <summary>
         /// ADD NEW CONTACT
         /// </summary>
@@ -24,6 +37,7 @@ namespace AddressBook.BLL.ContactLogic
         /// <param name="address"></param>
         /// <param name="telephonenumber"></param>
         /// <returns></returns>
+        #region Task<Boolean> CreateNewContact(string firstname, string lastname, string address, string telephonenumber)
         public async Task<Boolean> CreateNewContact(string firstname, string lastname, string address, string telephonenumber)
         {
             try
@@ -38,15 +52,16 @@ namespace AddressBook.BLL.ContactLogic
             {
                 return false;
             }
-
         }
+        #endregion
 
 
         /// <summary>
-        /// 
+        /// delete contact by ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        #region Task<Boolean> DeleteThisContact(int id)
         public async Task<Boolean> DeleteThisContact(int id)
         {
             try
@@ -62,6 +77,7 @@ namespace AddressBook.BLL.ContactLogic
                 return false;
             }
         }
+        #endregion
 
 
         /// <summary>
@@ -107,7 +123,7 @@ namespace AddressBook.BLL.ContactLogic
 
 
         /// <summary>
-        /// 
+        /// update/edit contact by ID
         /// </summary>
         /// <param name="id"></param>
         /// <param name="contact"></param>
@@ -120,7 +136,7 @@ namespace AddressBook.BLL.ContactLogic
 
 
         /// <summary>
-        /// 
+        /// check if exist contact by ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -33,6 +33,7 @@ export class CreateContactComponent implements OnInit {
   // the form Model
   form: FormGroup;
 
+  telephoneInUse: number;
 
   // will use mgModel
   _contact: Contact = {
@@ -45,7 +46,7 @@ export class CreateContactComponent implements OnInit {
 
 
 
-  constructor(private contactservice: ContactService, private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router) {
+  constructor(private popup:Popup,private contactservice: ContactService, private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router) {
     this.myAppUrl = baseUrl;
 
   }
@@ -81,27 +82,48 @@ export class CreateContactComponent implements OnInit {
 
   }
 
+  doSmtg() {
+
+    console.log("BINGO");
+  }
+
 
   addContact(contactForm: NgForm): void {
-    if (this._contact.id == 0) {
-      this.contactservice.addNewContact(this._contact).subscribe(
-        (data: Contact) => {
-          console.log(data);
-          this._router.navigate(['fetch-data-contact']);
-        },
-        (error: any) => { console.log(error) }
-      );
-    }
-    else {
-      this.contactservice.updateContact(this._contact).subscribe(
-        () => {
-          console.log("It was executed an update by ID:" + `${this._contact.id}`);
-          this._router.navigate(['fetch-data-contact']);
-        },
-        (error: any) => { console.log(error) }
-      );
 
-    }
+
+    this._http.get<Contact[]>(this.myAppUrl + 'api/ContactsEF?telephoneNumber=' + this._contact.telephoneNumber).subscribe(result => {
+      this.telephoneInUse = result.length;
+
+      if (this.telephoneInUse == 0 && this._contact.id == 0) {
+        this.contactservice.addNewContact(this._contact).subscribe(
+          (data: Contact) => {
+            console.log("It was executed add/new contact:");
+            console.log(data);
+            this._router.navigate(['fetch-data-contact']);
+          },
+          (error: any) => { console.log(error) }
+        );
+      }
+      else {
+        this.contactservice.updateContact(this._contact).subscribe(
+          () => {
+            console.log("It was executed an update by ID:" + `${this._contact.id}`);
+            this._router.navigate(['fetch-data-contact']);
+          },
+          (error: any) => { console.log(error) }
+        );
+
+      }
+     
+    }, error => console.error(error));
+
+    //if (this.telephoneInUse > 0) {
+    //  console.log("telephone number is ready in use !!");
+    //}
+    //else {
+
+
+    //}
   }
 
 

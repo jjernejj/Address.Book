@@ -1,6 +1,7 @@
 ﻿using AddressBook.DAL.DataContext;
 using AddressBook.DAL.Entities;
 using AddressBook.DAL.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -17,6 +18,22 @@ namespace AddressBook.DAL.Functions
     {
 
         /// <summary>
+        /// check if exist yet this telephone number
+        /// </summary>
+        /// <param name="telephoneNumber"></param>
+        /// <returns></returns>
+        public Contact IsTelephoneNumberUse(string telephoneNumber)
+        {
+            Contact contact;
+            using (var context = new DatabaseContext(DatabaseContext.ops.dbOptions))
+            {
+                contact = context.Contacts.FirstOrDefault(a => a.TelephoneNumber == telephoneNumber);
+            }
+            return contact;
+        }
+
+
+        /// <summary>
         ///  add new contact
         /// </summary>
         /// <param name="firstname">insert first name</param>
@@ -25,6 +42,7 @@ namespace AddressBook.DAL.Functions
         /// <param name="telephonenumber">insert telephone number</param>
         /// <param name="contactid"></param>
         /// <returns></returns>
+        #region Task<Contact> AddContact(string firstname, string lastname, string address, string telephonenumber)
         public async Task<Contact> AddContact(string firstname, string lastname, string address, string telephonenumber)
         {
             Contact newContact = new Contact
@@ -42,6 +60,7 @@ namespace AddressBook.DAL.Functions
             }
             return newContact;
         }
+        #endregion
 
 
         /// <summary>
@@ -49,6 +68,7 @@ namespace AddressBook.DAL.Functions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        #region Task<Contact> GetContact(Int64 id)
         public async Task<Contact> GetContact(Int64 id)
         {
             Contact contact = new Contact();
@@ -60,6 +80,7 @@ namespace AddressBook.DAL.Functions
             }
             return contact;
         }
+        #endregion
 
 
         /// <summary>
@@ -70,6 +91,7 @@ namespace AddressBook.DAL.Functions
         /// <param name="address"></param>
         /// <param name="telephoneNumber"></param>
         /// <returns></returns>
+        #region Task<List<Contact>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "")
         public async Task<List<Contact>> SearchContact(string firstName = "", string lastname = "", string address = "", string telephoneNumber = "")
         {
             List<Contact> contact = new List<Contact>();
@@ -88,6 +110,7 @@ namespace AddressBook.DAL.Functions
             }
             return contact;
         }
+        #endregion
 
 
         /// <summary>
@@ -95,6 +118,7 @@ namespace AddressBook.DAL.Functions
         /// 
         /// </summary>
         /// <returns></returns>
+        #region Task<List<Contact>> GetAllContacts(int pageNumber = 1)
         public async Task<List<Contact>> GetAllContacts(int pageNumber = 1)
         {
             List<Contact> contacts = new List<Contact>();
@@ -110,6 +134,7 @@ namespace AddressBook.DAL.Functions
             // and at the end return list of contacts
             return contacts;
         }
+        #endregion
 
 
         ///// <summary>
@@ -138,6 +163,7 @@ namespace AddressBook.DAL.Functions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        #region Task<int> DeleteContact(int id)
         public async Task<int> DeleteContact(int id)
         {
             try
@@ -159,6 +185,7 @@ namespace AddressBook.DAL.Functions
                 throw;
             }
         }
+        #endregion
 
 
         /// <summary>
@@ -169,6 +196,7 @@ namespace AddressBook.DAL.Functions
         /// <returns></returns>
         // PUT: api/ContactsEF/5 
         //[HttpPut("{id}")]
+        #region Task<int> PutContact(long id, Contact contact)
         public async Task<int> PutContact(long id, Contact contact)
         {
             int update;
@@ -187,6 +215,7 @@ namespace AddressBook.DAL.Functions
             }
             return update;
         }
+        #endregion
 
 
 
@@ -195,6 +224,7 @@ namespace AddressBook.DAL.Functions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        #region Task<bool> CheckContactExists(long id)
         public async Task<bool> CheckContactExists(long id)
         {
             var context = new DatabaseContext(DatabaseContext.ops.dbOptions);
@@ -203,6 +233,7 @@ namespace AddressBook.DAL.Functions
             return data;
         }
 
+        #endregion
 
 
 

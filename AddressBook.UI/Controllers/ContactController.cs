@@ -24,7 +24,6 @@ namespace AddressBook.UI.API
 
         public async Task<IActionResult> GetAll(int pageNumber = 1)
         {
-
             try
             {
                 var data = await contactLogic.GetAllContacts(pageNumber);

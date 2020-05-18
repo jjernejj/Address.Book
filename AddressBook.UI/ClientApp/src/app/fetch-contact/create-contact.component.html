@@ -1,6 +1,11 @@
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
 
-<form #createContactForm="ngForm" (ngSubmit)="addContact(_contact)">
+
+
+<form ng-controller="validateCtrl" ng-app="myApp" #createContactForm="ngForm" (ngSubmit)="addContact(_contact)">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">{{nameOfVerbAction}} Contact</h3>
@@ -9,7 +14,7 @@
     <div class="panel-body">
       <div class="form-group">
         <label for="firstName" class="control-label">First Name</label>
-        <input required minlength="3" placeholder="Insert first name...." id="firstName" [class.has-error]="firstNameControl.untouched" name="firstName" [(ngModel)]="_contact.firstName" #firstNameControl="ngModel" type="text" class="form-control" />
+        <input ng-model="email" required minlength="3" placeholder="Insert first name...." id="firstName" [class.has-error]="firstNameControl.untouched" name="firstName" [(ngModel)]="_contact.firstName" #firstNameControl="ngModel" type="text" class="form-control" />
         <span class="help-block" *ngIf="firstNameControl.valid==false && firstNameControl.dirty">Invalid first name</span>
       </div>
 
@@ -23,11 +28,12 @@
         <label>Address</label>
         <input required minlength="3" placeholder="Insert address...." id="address" type="text" name="address" [(ngModel)]="_contact.address" #addressControl="ngModel" class="form-control" />
         <span class="help-block" *ngIf="addressControl.valid==false && addressControl.dirty">Invalid address</span>
+        <div ng-if="addressControl.$valid" ng-init="doSmtg()"></div>
       </div>
 
       <div class="form-group">
         <label>Phone number</label>
-        <input required pattern="^\d{3}-\d{3}-\d{3}$" placeholder="Insert last telephone number...." id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" #telephoneNumberControl="ngModel" type="text" class="form-control" />
+        <input ng-if="telephoneNumberControl.$valid" ng-init="doSmtg()" required pattern="^\d{3}-\d{3}-\d{3}$" placeholder="Insert last telephone number...." id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" #telephoneNumberControl="ngModel" type="text" class="form-control" />
         <span class="help-block" *ngIf="telephoneNumberControl.valid==false && telephoneNumberControl.dirty">Invalid format of telephone number</span>
       </div>
 
@@ -41,3 +47,11 @@
 <div>{{createContactForm.value | json}}x1</div>
 <div>{{createContactForm.invalid}}x2</div>
 <div>{{_contact | json}}x3</div>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('validateCtrl', function ($scope) {
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.comccc';
+  });
+</script>

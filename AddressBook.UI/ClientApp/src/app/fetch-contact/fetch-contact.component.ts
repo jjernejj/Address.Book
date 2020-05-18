@@ -65,7 +65,7 @@ export class FetchContactComponent {
 
     this.contactservice.deleteContact(Number(contactId)).subscribe(
       (data: number) => {
-        console.log("It was executed an update by ID:" + `${Number(contactId)}`);
+        console.log("It was executed delete conact by ID:" + `${Number(contactId)}`);
         this._router.navigate(['fetch-data-contact']);
       },
       (error: any) => { console.log(error) }

@@ -21,15 +21,22 @@ namespace AddressBook.UI.API
         private ContactLogic _context = new ContactLogic();
 
 
+        //[HttpGet("{teleNumber}")]
+        //public Contact IsTelephoneNumberUse(string teleNumber)
+        //{
+        //    var data = _context.IsTelephoneNumberUse(teleNumber);
+        //    return data;
+        //}
+
         /// <summary>
         /// GET: api/ContactsEF
         /// Get all contact
         /// </summary>
         /// <returns></returns>
         [HttpGet("{pageNumber}")]
-        public async Task<ActionResult<IEnumerable<Contact>>> GetContacts(int pagination)
+        public async Task<ActionResult<IEnumerable<Contact>>> GetContacts(int pageNumber)
         {
-            var data = await _context.GetAllContacts(pagination);
+            var data = await _context.GetAllContacts(pageNumber);
             if (data.Count < 1)
             {
                 return Ok("Currently doesn't exist any records.");
