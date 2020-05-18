@@ -12,6 +12,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FetchContactComponent } from './fetch-contact/fetch-contact.component';
 import { CreateContactComponent } from './fetch-contact/create-contact.component';
 import { ContactService } from './fetch-contact/contact.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -30,6 +31,7 @@ import { ContactService } from './fetch-contact/contact.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ModalModule.forRoot(),
     RouterModule.forRoot([
       //{ path: '', component: HomeComponent, pathMatch: 'full' },
       //{ path: 'counter', component: CounterComponent },

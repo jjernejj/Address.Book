@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <Compile Remove="API\ContactREST_Controller.cs" />
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
   </ItemGroup>
 
   <ItemGroup>
