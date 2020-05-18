@@ -95,6 +95,7 @@ namespace AddressBook.UI.API
         /// <param name="contact"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        #region Task<IActionResult> PutContact(long id, Contact contact)
         public async Task<IActionResult> PutContact(long id, Contact contact)
         {
             if (id != contact.Id)
@@ -118,7 +119,8 @@ namespace AddressBook.UI.API
                 }
             }
             return NoContent();
-        }
+        } 
+        #endregion
 
 
         /// <summary>
