@@ -6,21 +6,22 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+//import { HomeComponent } from './home/home.component';
+//import { CounterComponent } from './counter/counter.component';
+//import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchContactComponent } from './fetch-contact/fetch-contact.component';
 import { CreateContactComponent } from './fetch-contact/create-contact.component';
 import { ContactService } from './fetch-contact/contact.service';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    //HomeComponent,
+    //CounterComponent,
+    //FetchDataComponent,
     FetchContactComponent,
     CreateContactComponent,
     //CreateContact,
@@ -30,10 +31,11 @@ import { ContactService } from './fetch-contact/contact.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'fetch-data-contact', component: FetchContactComponent },
+      //{ path: '', component: HomeComponent, pathMatch: 'full' },
+      //{ path: 'counter', component: CounterComponent },
+      //{ path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: FetchContactComponent },
+      { path: 'fetch-data-contact', component: FetchContactComponent},
       { path: 'create-new-contact', component: CreateContactComponent },
       { path: 'create-new-contact/:id', component: CreateContactComponent },
       ////{ path: 'register-contact', component: CreateContact },

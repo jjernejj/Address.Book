@@ -6,11 +6,12 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { Contact } from '../models/contact.model'
-import { identifierModuleUrl } from '@angular/compiler';
+import { identifierModuleUrl, ElementSchemaRegistry } from '@angular/compiler';
 import { ContactService } from './contact.service'
 import { error } from 'protractor';
 import { log } from 'util';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-contact',
@@ -46,7 +47,7 @@ export class CreateContactComponent implements OnInit {
 
 
 
-  constructor(private popup:Popup,private contactservice: ContactService, private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router) {
+  constructor(private contactservice: ContactService, private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router) {
     this.myAppUrl = baseUrl;
 
   }
@@ -104,7 +105,7 @@ export class CreateContactComponent implements OnInit {
           (error: any) => { console.log(error) }
         );
       }
-      else {
+      else if (this.telephoneInUse == 1 && this._contact.id != 0) {
         this.contactservice.updateContact(this._contact).subscribe(
           () => {
             console.log("It was executed an update by ID:" + `${this._contact.id}`);
@@ -114,6 +115,8 @@ export class CreateContactComponent implements OnInit {
         );
 
       }
+      else
+        this._router.navigate(['/fetch-data-contact']);
      
     }, error => console.error(error));
 

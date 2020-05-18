@@ -1,14 +1,9 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-
-
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
 
 <form ng-controller="validateCtrl" ng-app="myApp" #createContactForm="ngForm" (ngSubmit)="addContact(_contact)">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">{{nameOfVerbAction}} Contact</h3>
+      <h1 class="panel-title">{{nameOfVerbAction}} Contact</h1>
     </div>
 
     <div class="panel-body">
@@ -34,7 +29,7 @@
       <div class="form-group">
         <label>Phone number</label>
         <input ng-if="telephoneNumberControl.$valid" ng-init="doSmtg()" required pattern="^\d{3}-\d{3}-\d{3}$" placeholder="Insert last telephone number...." id="telephoneNumber" name="telephoneNumber" [(ngModel)]="_contact.telephoneNumber" #telephoneNumberControl="ngModel" type="text" class="form-control" />
-        <span class="help-block" *ngIf="telephoneNumberControl.valid==false && telephoneNumberControl.dirty">Invalid format of telephone number</span>
+        <span class="help-block" *ngIf="telephoneNumberControl.valid==false && telephoneNumberControl.dirty">Invalid format of telephone number (format 111-222-333)</span>
       </div>
 
     </div>
@@ -44,14 +39,6 @@
     </div>
   </div>
 </form>
-<div>{{createContactForm.value | json}}x1</div>
+<!--<div>{{createContactForm.value | json}}x1</div>
 <div>{{createContactForm.invalid}}x2</div>
-<div>{{_contact | json}}x3</div>
-
-<script>
-  var app = angular.module('myApp', []);
-  app.controller('validateCtrl', function ($scope) {
-    $scope.user = 'John Doe';
-    $scope.email = 'john.doe@gmail.comccc';
-  });
-</script>
+<div>{{_contact | json}}x3</div>-->
