@@ -4,6 +4,10 @@ import { Contact } from '../models/contact.model'
 import { ContactService } from './contact.service'
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NotifierService } from 'angular-notifier'
+
+
+
 
 @Component({
   selector: 'app-fetch-contact',
@@ -21,7 +25,10 @@ export class FetchContactComponent {
   public errorList: string[];
   public modalMessage: string;
 
-
+  /**
+* Notifier service
+*/
+  private notifier: NotifierService;
 
   searchByFirstName: string = "";
   searchByLastName: string = "";
@@ -32,9 +39,16 @@ export class FetchContactComponent {
   _http: HttpClient;
   _baseUrl: string = "";
 
-  constructor(private contactservice: ContactService, http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router, private modalService: BsModalService) {
+
+  /**
+  * Constructor
+  *
+  * @param {NotifierService} notifier Notifier service
+  */
+  constructor(private contactservice: ContactService, http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router, private modalService: BsModalService, notifier: NotifierService) {
     this._http = http;
     this._baseUrl = baseUrl;
+    this.notifier = notifier;
 
     if (this.searchByFirstName.length > 0 || this.searchByLastName.length > 0 || this.searchByAddress.length > 0 || this.searchByTelephoneNumber.length > 0) {
       console.log("Will be executed serach by fields");
@@ -63,15 +77,22 @@ export class FetchContactComponent {
   confirm(): void {
     this.message = 'Confirmed!';
     this.deleteThisContact(this._deleteId);
+    this.contactservice.showNotification('info', 'The deletion was executed')
     this.modalRef.hide();
   }
 
   decline(): void {
+    this.contactservice.showNotification('info', 'The deletion was aborted')
     this.message = 'Declined!';
     this.modalRef.hide();
   }
 
 
+
+  showNotification(type: string, message: string) {
+
+    this.contactservice.showNotification(type, message);
+  }
 
   loadContactToEdit(contactId: string) {
     this.contactservice._globalNameOfVerb = "Update";
@@ -94,7 +115,10 @@ export class FetchContactComponent {
         console.log("It was executed delete conact by ID:" + `${Number(contactId)}`);
         this._router.navigate(['fetch-data-contact']);
       },
-      (error: any) => { console.log(error) }
+      (error: any) => {
+        this.contactservice.showNotification('warning', error)
+        console.log(error)
+      }
     );
 
     // remove from contacts table spcific item, that we removed/delete
@@ -111,7 +135,10 @@ export class FetchContactComponent {
     this._http.get<Contact[]>(this._baseUrl + 'contact?pageNumber=' + this.contactservice._globalPagination).subscribe(result => {
       this.contacts = result;
       this.contactservice._globalContactList = result;
-    }, error => console.error(error));
+    }, error => {
+      this.contactservice.showNotification('warning', error)
+      console.error(error)
+    });
   }
 
   paginationNext() {
@@ -120,7 +147,10 @@ export class FetchContactComponent {
     this._http.get<Contact[]>(this._baseUrl + 'contact?pageNumber=' + this.contactservice._globalPagination).subscribe(result => {
       this.contacts = result;
       this.contactservice._globalContactList = result;
-    }, error => console.error(error));
+    }, error => {
+      this.contactservice.showNotification('warning', error)
+      console.error(error)
+    });
   }
 
 
@@ -130,13 +160,21 @@ export class FetchContactComponent {
       this._http.get<Contact[]>(this._baseUrl + 'api/ContactsEF?firstName=' + this.searchByFirstName + '&lastName=' + this.searchByLastName + '&address=' + this.searchByAddress + '&telephoneNumber=' + this.searchByTelephoneNumber).subscribe(result => {
         this.contacts = result;
         this.contactservice._globalContactList = result;
-      }, error => console.error(error));
+        this.contactservice.showNotification('info', "Number of hits " + result.length.toString())
+      }, error => {
+        this.contactservice.showNotification('warning', error)
+        console.error(error)
+      });
+
     }
     else {
       this._http.get<Contact[]>(this._baseUrl + 'contact').subscribe(result => {
         this.contacts = result;
         this.contactservice._globalContactList = result;
-      }, error => console.error(error));
+      }, error => {
+        this.contactservice.showNotification('warning', error)
+        console.error(error)
+      });
     }
 
   }

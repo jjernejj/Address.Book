@@ -52,6 +52,11 @@ export class CreateContactComponent implements OnInit {
   }
 
 
+  wakawaka() {
+
+    this.contactservice.showNotification("success", "nekineki  !!");
+  }
+
   loadAllContacts() {
     this.contactservice.getAllContacts()
       .subscribe(countries => {
@@ -82,15 +87,8 @@ export class CreateContactComponent implements OnInit {
 
   }
 
-  doSmtg() {
-
-    console.log("BINGO");
-  }
-
 
   addContact(contactForm: NgForm): void {
-
-
     this._http.get<Contact[]>(this.myAppUrl + 'api/ContactsEF?telephoneNumber=' + this._contact.telephoneNumber).subscribe(result => {
       this.telephoneInUse = result.length;
 
@@ -101,7 +99,10 @@ export class CreateContactComponent implements OnInit {
             console.log(data);
             this._router.navigate(['fetch-data-contact']);
           },
-          (error: any) => { console.log(error) }
+          (error: any) => {
+            this.contactservice.showNotification('warning', error)
+            console.log(error)
+          }
         );
       }
       else if (this.telephoneInUse == 1 && this._contact.id != 0) {
@@ -110,14 +111,24 @@ export class CreateContactComponent implements OnInit {
             console.log("It was executed an update by ID:" + `${this._contact.id}`);
             this._router.navigate(['fetch-data-contact']);
           },
-          (error: any) => { console.log(error) }
+          (error: any) => {
+            this.contactservice.showNotification('warning', error)
+            console.log(error)
+          }
         );
 
       }
-      else
-        this._router.navigate(['/fetch-data-contact']);
+      else {
+        this.contactservice.showNotification('error', "Telephone number already exist")
+        //this._router.navigate(['/fetch-data-contact']);
+        //this.contactservice.showNotification('warning', "Telephone number already exist")
+      }
 
-    }, error => console.error(error));
+    }, error => {
+      this.contactservice.showNotification('warning', error)
+      console.error(error)
+    }
+    );
 
     //if (this.telephoneInUse > 0) {
     //  console.log("telephone number is ready in use !!");

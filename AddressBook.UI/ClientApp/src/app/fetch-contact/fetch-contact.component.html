@@ -7,7 +7,7 @@
   <div class="col-md-2">
     <input type="text" class="form-control" placeholder="Search by first name" [(ngModel)]="searchByFirstName" />
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <input type="text" class="form-control" placeholder="Search by last name" [(ngModel)]="searchByLastName" />
   </div>
   <div class="col-md-3">
@@ -21,6 +21,11 @@
   </div>
   <div class="col-md-1">
     <button type="submit" (click)="cleadModelForAddNewContact(0)" class="btn btn-primary">Add</button>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-primary" (click)="showNotification( 'default', 'Good evening, you lovely person!' )">
+      Bite me!
+    </button>
   </div>
 </div>
 
@@ -63,10 +68,10 @@
   </div>
 
   <div style="text-align: center" class="col-sm-6">
-    <button type="submit" (click)="paginationNext()" class="btn btn-danger pull-left ">Next</button>
+    <button type="submit" (click)="paginationNext()" class="btn btn-danger pull-left">Next</button>
   </div>
-</div>
 
+</div>
 
 <!-- this wiil be use for show server errors-->
 <!--<ng-template #template>
@@ -93,3 +98,7 @@
     <button type="button" class="btn btn-primary" (click)="decline()">No</button>
   </div>
 </ng-template>
+
+
+<notifier-container></notifier-container>
+

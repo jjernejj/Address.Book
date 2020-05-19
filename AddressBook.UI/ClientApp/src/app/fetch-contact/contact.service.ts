@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'
 import { Contact } from "../models/contact.model";
 import { catchError } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier'
 
 
 @Injectable({
@@ -21,13 +22,24 @@ export class ContactService {
   _globalNameOfVerb: string;
   _globalPagination: number = 1;
 
+  /**
+* Notifier service
+*/
+  private notifier: NotifierService;
 
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  /**
+  * Constructor
+  *
+  * @param {NotifierService} notifier Notifier service
+  */
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, notifier: NotifierService) {
     this.appUrl = baseUrl;
+    this.notifier = notifier
   }
 
   handleError(errorMsg: Response) {
+    this.showNotification('warning', errorMsg.status.toString())
     console.log(errorMsg);
     return throwError(errorMsg);
   }
@@ -96,5 +108,65 @@ export class ContactService {
     return this.http.delete<number>(this.url + '/DeleteEmployeeDetails?id=' + employeeid,
       httpOptions);
   }
+
+
+
+  /**
+ * Show a notification
+ *
+ * @param {string} type    Notification type
+ * @param {string} message Notification message
+ */
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
+  }
+
+	/**
+	 * Hide oldest notification
+	 */
+  public hideOldestNotification(): void {
+    this.notifier.hideOldest();
+  }
+
+	/**
+	 * Hide newest notification
+	 */
+  public hideNewestNotification(): void {
+    this.notifier.hideNewest();
+  }
+
+	/**
+	 * Hide all notifications at once
+	 */
+  public hideAllNotifications(): void {
+    this.notifier.hideAll();
+  }
+
+	/**
+	 * Show a specific notification (with a custom notification ID)
+	 *
+	 * @param {string} type    Notification type
+	 * @param {string} message Notification message
+	 * @param {string} id      Notification ID
+	 */
+  public showSpecificNotification(type: string, message: string, id: string): void {
+    this.notifier.show({
+      id,
+      message,
+      type
+    });
+  }
+
+	/**
+	 * Hide a specific notification (by a given notification ID)
+	 *
+	 * @param {string} id Notification ID
+	 */
+  public hideSpecificNotification(id: string): void {
+    this.notifier.hide(id);
+  }
+
+
+
 
 }
